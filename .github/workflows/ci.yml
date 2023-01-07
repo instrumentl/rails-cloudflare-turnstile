@@ -13,6 +13,10 @@ jobs:
       checks: write
     env:
       RAILS_ENV: test
+    strategy:
+      fail-fast: true
+      matrix:
+        ruby: ['2.7', '3.0', '3.1']
     steps:
       - name: Checkout code
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
@@ -20,7 +24,7 @@ jobs:
         uses: ruby/setup-ruby@319066216501fbd5e2d568f14b7d68c19fb67a5d
         with:
           bundler-cache: true
-          cache-version: ruby-${{ hashFiles('Gemfile.lock') }}
+          ruby-version: ${{ matrix.ruby }}
       - name: Run RSpec Tests
         timeout-minutes: 20
         run: bundle exec rspec -f doc
@@ -36,7 +40,6 @@ jobs:
         uses: ruby/setup-ruby@03b78bdda287ae04217ee12e4b64996630a03542
         with:
           bundler-cache: true
-          cache-version: ruby-${{ hashFiles('Gemfile.lock') }}
       - name: Bundle Audit Check
         run: bundle exec bundle-audit update && bundle exec bundle-audit check
       - name: Setup Python
