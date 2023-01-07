@@ -2,10 +2,10 @@
 
 module RailsCloudflareTurnstile
   module ViewHelpers
-    def cloudflare_turnstile
+    def cloudflare_turnstile(action: "other")
       return nil unless RailsCloudflareTurnstile.enabled?
       content_tag(:div, class: "cloudflare-turnstile") do
-        concat turnstile_div
+        concat turnstile_div(action)
       end
     end
 
@@ -18,9 +18,9 @@ module RailsCloudflareTurnstile
 
     private
 
-    def turnstile_div
+    def turnstile_div(action)
       config = RailsCloudflareTurnstile.configuration
-      content_tag(:div, :class => "cf-turnstile", "data-sitekey" => site_key, "data-size" => config.size) do
+      content_tag(:div, :class => "cf-turnstile", "data-sitekey" => site_key, "data-size" => config.size, "data-action" => action) do
         ""
       end
     end
