@@ -1,0 +1,83 @@
+name: "Test"
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
+    env:
+      RAILS_ENV: test
+    services:
+      redis:
+        image: redis:7.0.5
+        ports: [6379]
+      elasticsearch:
+        image: elasticsearch:7.17.7
+        ports: [9200]
+        options: -e="discovery.type=single-node" --health-cmd="curl http://localhost:9200/_cluster/health" --health-interval=10s --health-timeout=5s --health-retries=10
+      postgres:
+        image: postgres:13.9-bullseye
+        ports: [5432]
+        env:
+          POSTGRES_DB: rails_test
+          POSTGRES_USER: rails
+          POSTGRES_PASSWORD: password
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@03b78bdda287ae04217ee12e4b64996630a03542
+        with:
+          bundler-cache: true
+          cache-version: ruby-${{ hashFiles('Gemfile.lock') }}
+      - name: Run RSpec Tests
+        timeout-minutes: 20
+        env:
+          ENABLE_SIMPLECOV: true
+          DB_USERNAME: rails
+          DB_PASSWORD: password
+          DB_HOST: localhost
+          DB_PORT: ${{ job.services.postgres.ports['5432'] }}
+          ELASTICSEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports['9200'] }}
+          REDIS_URL: redis://localhost:${{ job.services.redis.ports['6379'] }}
+        run: |
+          bundle exec rails db:prepare
+          bundle exec rspec --format RspecJunitFormatter --out test_results/rspec.xml spec/
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@46ab8d49369d898e381a607119161771bc65c2a6
+        if: ${{ success() || failure() }}
+        with:
+          check_name: Unit Test Results (Rails)
+          files: test_results/*.xml
+      - name: Simplecov Group Coverage Report
+        uses: pi-chan/simplecov-report-group-action@5142eaad4f6c9fb2c9e5d33508f3ac2423a2a415
+        if: ${{ success() || failure() }}
+        with:
+          token: ${{ github.token }}
+
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@03b78bdda287ae04217ee12e4b64996630a03542
+        with:
+          bundler-cache: true
+          cache-version: ruby-${{ hashFiles('Gemfile.lock') }}
+      - name: Bundle Audit Check
+        run: bundle exec bundle-audit update && bundle exec bundle-audit check
+      - name: Lint Ruby files
+        timeout-minutes: 3
+        run: bundle exec standardrb
