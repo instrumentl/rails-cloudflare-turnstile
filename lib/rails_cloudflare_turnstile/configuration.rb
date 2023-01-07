@@ -16,6 +16,9 @@ module RailsCloudflareTurnstile
     # Timeout for operations with Cloudflare
     attr_accessor :timeout
 
+    # size for the widget ("regular" or "compact")
+    attr_accessor :size
+
     attr_accessor :enabled
 
     def initialize
@@ -24,12 +27,15 @@ module RailsCloudflareTurnstile
       @fail_open = true
       @enabled = nil
       @timeout = 5.0
+      @size = :regular
       @validation_url = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
     end
 
     def validate!
       raise "Must set site key" if @site_key.nil?
       raise "Must set secret key" if @secret_key.nil?
+      @size = @size.to_sym
+      raise "Size must be one of ':regular' or ':compact'" unless [:regular, :compact].include? @size
     end
   end
 end

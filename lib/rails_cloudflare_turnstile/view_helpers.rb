@@ -19,7 +19,8 @@ module RailsCloudflareTurnstile
     private
 
     def turnstile_div
-      content_tag(:div, :class => "cf-turnstile", "data-sitekey" => site_key) do
+      config = RailsCloudflareTurnstile.configuration
+      content_tag(:div, :class => "cf-turnstile", "data-sitekey" => site_key, "data-size" => config.size) do
         ""
       end
     end
