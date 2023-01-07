@@ -37,5 +37,9 @@ module RailsCloudflareTurnstile
       @size = @size.to_sym
       raise "Size must be one of ':regular' or ':compact'" unless [:regular, :compact].include? @size
     end
+
+    def disabled?
+      @enabled == false
+    end
   end
 end

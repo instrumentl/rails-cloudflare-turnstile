@@ -10,9 +10,12 @@ module RailsCloudflareTurnstile
 
   def self.configure
     yield(configuration) if block_given?
-    configuration.validate!
+    unless configuration.disabled?
+      configuration.validate!
+    end
     if configuration.enabled.nil?
       configuration.enabled = true
+    else
     end
   end
 

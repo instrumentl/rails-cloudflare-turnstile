@@ -23,6 +23,14 @@ RSpec.describe RailsCloudflareTurnstile do
       expect(described_class.enabled?).to be false
     end
 
+    it "does not raise if disabled, even if nothing else is set" do
+      described_class.configure do |c|
+        c.site_key = nil
+        c.enabled = false
+      end
+      expect(described_class.enabled?).to be false
+    end
+
     it "does not raise if everything is set" do
       described_class.configure do |c|
         c.site_key = "abc"

@@ -32,6 +32,8 @@ RailsCloudflareTurnstile.configure do |c|
 end
 ```
 
+To totally disable Turnstile, you can set `c.enabled = false` and all other config values are ignored.
+
 To use Turnstile for a view:
 
    1. Call `cloudflare_turnstile_script_tag` in your layout
