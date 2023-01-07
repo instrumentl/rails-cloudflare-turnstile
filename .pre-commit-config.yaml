@@ -1,0 +1,17 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v3.2.0
+  hooks:
+  - id: trailing-whitespace
+  - id: end-of-file-fixer
+    exclude: '^(config/secrets.yml.enc$)|(spec/data/)|(db/.*\.sql$)'
+  - id: check-yaml
+    exclude: '.rubocop.yml'
+  - id: check-added-large-files
+  - id: check-byte-order-marker
+    exclude: '^spec/data/'
+  - id: check-merge-conflict
+- repo: https://github.com/instrumentl/pre-commit-standardrb.git
+  rev: 'b6b9b2a15f4b721033849181accb8e596d1e8e56'
+  hooks:
+    - id: standardrb
