@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        ruby: ['2.7', '3.0', '3.1']
+        ruby: ["2.7", "3.0", "3.1"]
     steps:
       - name: Checkout code
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
@@ -40,11 +40,12 @@ jobs:
         uses: ruby/setup-ruby@03b78bdda287ae04217ee12e4b64996630a03542
         with:
           bundler-cache: true
+          ruby-version: "3.1"
       - name: Bundle Audit Check
         run: bundle exec bundle-audit update && bundle exec bundle-audit check
       - name: Setup Python
         uses: actions/setup-python@2c3dd9e7e29afd70cc0950079bde6c979d1f69f9
         with:
-          python-version: '3.10'
+          python-version: "3.10"
       - name: Run pre-commit
         uses: pre-commit/action@4835dd97624f38176d7f9f87fcce089836248ee9
