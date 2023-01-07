@@ -44,5 +44,7 @@ jobs:
         run: bundle exec bundle-audit update && bundle exec bundle-audit check
       - name: Setup Python
         uses: actions/setup-python@2c3dd9e7e29afd70cc0950079bde6c979d1f69f9
+        with:
+          python-version: '3.10'
       - name: Run pre-commit
         uses: pre-commit/action@4835dd97624f38176d7f9f87fcce089836248ee9
