@@ -15,7 +15,6 @@ module RailsCloudflareTurnstile
     end
     if configuration.enabled.nil?
       configuration.enabled = true
-    else
     end
   end
 

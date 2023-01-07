@@ -40,7 +40,7 @@ To use Turnstile for a view:
    2. Call `cloudflare_turnstile` in your form View
    3. Call `validate_cloudflare_turnstile` as a `before_action` in your controller.
 
-If the challenge fails, the exception `RailssCloudflareTurnstile::Forbidden` will be raised; you should handle this with
+If the challenge fails, the exception `RailsCloudflareTurnstile::Forbidden` will be raised; you should handle this with
 a `rescue_from` block.
 
 ## License
