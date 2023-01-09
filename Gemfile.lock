@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     rails_cloudflare_turnstile (0.1.0)
-      faraday (>= 1.0)
-      rails (>= 5.0)
+      faraday (>= 1.0, < 3.0)
+      rails (>= 5.0, < 7.1)
 
 GEM
   remote: https://rubygems.org/
