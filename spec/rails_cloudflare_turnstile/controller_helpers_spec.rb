@@ -60,7 +60,7 @@ RSpec.describe RailsCloudflareTurnstile::ControllerHelpers do
         allow(logger).to receive(:error)
       end
 
-      context "resposne from cloudflare" do
+      context "response from cloudflare" do
         around do |example|
           s = stub_request(:post, "https://challenges.cloudflare.com/turnstile/v0/siteverify")
             .with(body: {secret: secret_key, response: cf_response, remoteip: "127.0.0.1"})

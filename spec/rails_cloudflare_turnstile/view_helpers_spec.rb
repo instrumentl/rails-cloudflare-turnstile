@@ -34,7 +34,7 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
       end
     end
 
-    its(:cloudflare_turnstile_script_tag) { should eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js\" async=\"async\" defer=\"defer\"></script>" }
+    its(:cloudflare_turnstile_script_tag) { should eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js\" async=\"async\"></script>" }
 
     describe "#cloudflare_turnstile" do
       it do

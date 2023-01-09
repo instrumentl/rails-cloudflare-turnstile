@@ -11,7 +11,7 @@ module RailsCloudflareTurnstile
 
     def cloudflare_turnstile_script_tag
       return nil unless RailsCloudflareTurnstile.enabled?
-      content_tag(:script, :src => js_src, "async" => true, "defer" => true) do
+      content_tag(:script, :src => js_src, "async" => true) do
         ""
       end
     end
