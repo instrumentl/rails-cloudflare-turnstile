@@ -1,0 +1,25 @@
+name: Release to RubyGems
+on:
+  release:
+    types: [published]
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@03b78bdda287ae04217ee12e4b64996630a03542
+        with:
+          bundler-cache: true
+          ruby-version: "3.1"
+      - name: Publish gem
+        run: |
+          umask 077
+          mkdir -p "$HOME/.gem"
+          printf -- "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}\n" > $HOME/.gem/credentials
+          gem build *.gemspec
+          gem push *.gem
+          rm -f "$HOME/.gem/credentials"
+        env:
+          RUBYGEMS_API_KEY: "${{secrets.RUBYGEMS_PUSH_API_KEY}}"
