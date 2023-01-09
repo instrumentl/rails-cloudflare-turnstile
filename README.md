@@ -9,7 +9,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rails-cloudflare-turnstile'
+gem 'rails_cloudflare_turnstile'
 ```
 
 And then execute:
@@ -32,11 +32,16 @@ RailsCloudflareTurnstile.configure do |c|
 end
 ```
 
+To totally disable Turnstile, you can set `c.enabled = false` and all other config values are ignored.
+
 To use Turnstile for a view:
 
    1. Call `cloudflare_turnstile_script_tag` in your layout
    2. Call `cloudflare_turnstile` in your form View
-   3. Call `enable_cloudflare_turnstile` in your controller
+   3. Call `validate_cloudflare_turnstile` as a `before_action` in your controller.
+
+If the challenge fails, the exception `RailsCloudflareTurnstile::Forbidden` will be raised; you should handle this with
+a `rescue_from` block.
 
 ## License
 The gem is available as open source under the terms of the [ISC License](LICENSE.txt).
