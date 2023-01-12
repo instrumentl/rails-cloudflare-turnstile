@@ -3,9 +3,14 @@
 module RailsCloudflareTurnstile
   module ViewHelpers
     def cloudflare_turnstile(action: "other")
-      return nil unless RailsCloudflareTurnstile.enabled?
-      content_tag(:div, class: "cloudflare-turnstile") do
-        concat turnstile_div(action)
+      if RailsCloudflareTurnstile.enabled?
+        content_tag(:div, class: "cloudflare-turnstile") do
+          concat turnstile_div(action)
+        end
+      elsif RailsCloudflareTurnstile.mock_enabled?
+        content_tag(:div, class: "cloudflare-turnstile") do
+          concat mock_turnstile_div(action)
+        end
       end
     end
 
@@ -22,6 +27,15 @@ module RailsCloudflareTurnstile
       config = RailsCloudflareTurnstile.configuration
       content_tag(:div, :class => "cf-turnstile", "data-sitekey" => site_key, "data-size" => config.size, "data-action" => action) do
         ""
+      end
+    end
+
+    def mock_turnstile_div(action)
+      content_tag(:div, class: "cf-turnstile", style: "width: 300px; height: 65px: border: 1px solid gray") do
+        tag.input(type: "hidden", name: "cf-turnstile-response", value: "mocked")
+        content_tag(:p) do
+          "CAPTCHA goes here in production"
+        end
       end
     end
 

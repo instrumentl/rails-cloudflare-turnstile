@@ -42,4 +42,21 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
       end
     end
   end
+
+  context "configured in mock mode" do
+    before do
+      RailsCloudflareTurnstile.configure do |c|
+        c.enabled = false
+        c.mock_enabled = true
+      end
+    end
+
+    its(:cloudflare_turnstile_script_tag) { should eq nil }
+
+    describe "#cloudflare_turnstile" do
+      it do
+        expect(subject.cloudflare_turnstile(action: "an-action")).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" style=\"width: 300px; height: 65px: border: 1px solid gray\"><p>CAPTCHA goes here in production</p></div></div>"
+      end
+    end
+  end
 end
