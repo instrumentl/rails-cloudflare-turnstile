@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+0.1.3
+-----
+- Add mocked functionality in dev/test
+
 0.1.2
 -----
 - Fix URIs in gemspec
