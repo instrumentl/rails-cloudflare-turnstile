@@ -16,10 +16,17 @@ module RailsCloudflareTurnstile
     if configuration.enabled.nil?
       configuration.enabled = true
     end
+    if configuration.mock_enabled.nil?
+      configuration.mock_enabled = Rails.env.development? || Rails.env.test?
+    end
   end
 
   def self.enabled?
     configuration.enabled == true
+  end
+
+  def self.mock_enabled?
+    configuration.mock_enabled == true
   end
 
   def self.reset_configuration!

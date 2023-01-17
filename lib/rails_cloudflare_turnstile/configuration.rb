@@ -21,11 +21,14 @@ module RailsCloudflareTurnstile
 
     attr_accessor :enabled
 
+    attr_accessor :mock_enabled
+
     def initialize
       @site_key = nil
       @secret_key = nil
       @fail_open = true
       @enabled = nil
+      @mock_enabled = nil
       @timeout = 5.0
       @size = :regular
       @validation_url = "https://challenges.cloudflare.com/turnstile/v0/siteverify"

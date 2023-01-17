@@ -34,7 +34,6 @@ RailsCloudflareTurnstile.configure do |c|
   c.fail_open = true
 end
 ```
-
 To totally disable Turnstile, you can set `c.enabled = false` and all other config values are ignored.
 
 To use Turnstile for a view:
@@ -45,6 +44,9 @@ To use Turnstile for a view:
 
 If the challenge fails, the exception `RailsCloudflareTurnstile::Forbidden` will be raised; you should handle this with
 a `rescue_from` block.
+
+By default, in development and test mode, a special mock view will be inserted if real credentials are not present. To
+disable this, set the `mock_enable` property of the configuration to false.
 
 ## License
 The gem is available as open source under the terms of the [ISC License](LICENSE.txt).

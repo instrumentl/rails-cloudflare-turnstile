@@ -52,6 +52,7 @@ RSpec.describe RailsCloudflareTurnstile::ControllerHelpers do
 
       before do
         RailsCloudflareTurnstile.configure do |c|
+          c.enabled = true
           c.site_key = site_key
           c.secret_key = secret_key
           c.fail_open = fail_open
@@ -119,6 +120,29 @@ RSpec.describe RailsCloudflareTurnstile::ControllerHelpers do
 
           its(:cloudflare_turnstile_ok?) { should eq false }
         end
+      end
+    end
+
+    context "configured in mock mode" do
+      let(:logger) { double("logger") }
+
+      before do
+        RailsCloudflareTurnstile.configure do |c|
+          c.mock_enabled = true
+          c.enabled = false
+        end
+        allow(Rails).to receive(:logger).and_return(logger)
+        allow(logger).to receive(:error)
+      end
+
+      context "passes" do
+        let(:cf_response) { "mocked" }
+        its(:cloudflare_turnstile_ok?) { should eq true }
+      end
+
+      context "fails" do
+        let(:cf_response) { nil }
+        its(:cloudflare_turnstile_ok?) { should eq false }
       end
     end
   end
