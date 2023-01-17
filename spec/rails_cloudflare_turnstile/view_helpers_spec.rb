@@ -55,7 +55,16 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
 
     describe "#cloudflare_turnstile" do
       it do
-        expect(subject.cloudflare_turnstile(action: "an-action")).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" style=\"width: 300px; height: 65px: border: 1px solid gray\"><p>CAPTCHA goes here in production</p></div></div>"
+        expect(subject.cloudflare_turnstile(action: "an-action")).to eq <<-EOF
+          <div class="cloudflare-turnstile">
+          <div class="cf-turnstile" style="width: 300px; height: 65px: border: 1px solid gray">
+          <input type="hidden" name="cf-turnstile-response" value="mocked">
+          <p>CAPTCHA goes here in production</p>
+          </div>
+          </div>
+        EOF
+          .gsub(/^\s*/, "")
+          .delete "\n"
       end
     end
   end

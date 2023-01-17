@@ -32,10 +32,12 @@ module RailsCloudflareTurnstile
 
     def mock_turnstile_div(action)
       content_tag(:div, class: "cf-turnstile", style: "width: 300px; height: 65px: border: 1px solid gray") do
-        tag.input(type: "hidden", name: "cf-turnstile-response", value: "mocked")
-        content_tag(:p) do
-          "CAPTCHA goes here in production"
-        end
+        [
+          tag.input(type: "hidden", name: "cf-turnstile-response", value: "mocked"),
+          content_tag(:p) do
+            "CAPTCHA goes here in production"
+          end
+        ].reduce(:<<)
       end
     end
 
