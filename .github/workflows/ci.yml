@@ -21,7 +21,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@319066216501fbd5e2d568f14b7d68c19fb67a5d
+        uses: ruby/setup-ruby@93287a1fa82c6ddbb6d8db978df4b0119cd8879f
         with:
           bundler-cache: true
           ruby-version: ${{ matrix.ruby }}
@@ -37,14 +37,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@03b78bdda287ae04217ee12e4b64996630a03542
+        uses: ruby/setup-ruby@93287a1fa82c6ddbb6d8db978df4b0119cd8879f
         with:
           bundler-cache: true
           ruby-version: "3.1"
       - name: Bundle Audit Check
         run: bundle exec bundle-audit update && bundle exec bundle-audit check
       - name: Setup Python
-        uses: actions/setup-python@5ccb29d8773c3f3f653e1705f474dfaa8a06a912
+        uses: actions/setup-python@d27e3f3d7c64b4bbf8e4abfb9b63b83e846e0435
         with:
           python-version: "3.10"
       - name: Run pre-commit
