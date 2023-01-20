@@ -11,6 +11,18 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
       include RailsCloudflareTurnstile::ViewHelpers
 
       attr_accessor :output_buffer
+
+      def javascript_path(name)
+        "/mock/#{name}"
+      end
+
+      def image_path(name)
+        "/mock/#{name}"
+      end
+
+      def image_tag(name)
+        "<img src=\"#{image_path name}\" />".html_safe
+      end
     end.new
   end
 
@@ -38,7 +50,7 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
 
     describe "#cloudflare_turnstile" do
       it do
-        expect(subject.cloudflare_turnstile(action: "an-action")).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"regular\" data-action=\"an-action\"></div></div>"
+        expect(subject.cloudflare_turnstile(action: "an-action")).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"regular\" data-action=\"an-action\" data-theme=\"auto\"></div></div>"
       end
     end
   end
@@ -51,15 +63,16 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
       end
     end
 
-    its(:cloudflare_turnstile_script_tag) { should eq nil }
+    its(:cloudflare_turnstile_script_tag) { should eq "<script src=\"/mock/mock_cloudflare_turnstile_api.js\" async=\"async\"></script>" }
 
     describe "#cloudflare_turnstile" do
       it do
         expect(subject.cloudflare_turnstile(action: "an-action")).to eq <<-EOF
           <div class="cloudflare-turnstile">
-          <div class="cf-turnstile" style="width: 300px; height: 65px: border: 1px solid gray">
+          <div class="cf-turnstile" style="width: 300px; height: 65px; border: 1px solid gray; display: flex; flex-direction: row; justify-content: center; align-items: center; margin: 10px;">
           <input type="hidden" name="cf-turnstile-response" value="mocked">
-          <p>CAPTCHA goes here in production</p>
+          <img src="/mock/turnstile-logo.svg" />
+          <p style="margin: 0">CAPTCHA goes here in production</p>
           </div>
           </div>
         EOF

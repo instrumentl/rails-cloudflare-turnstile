@@ -1,4 +1,5 @@
 require "rails_cloudflare_turnstile/version"
+require "rails_cloudflare_turnstile/engine"
 require "rails_cloudflare_turnstile/configuration"
 require "rails_cloudflare_turnstile/errors"
 require "rails_cloudflare_turnstile/controller_helpers"

@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.metadata["source_code_uri"] = "https://github.com/instrumentl/rails-cloudflare-turnstile"
   spec.metadata["changelog_uri"] = "https://github.com/instrumentl/rails-cloudflare-turnstile/blob/main/CHANGELOG.md"
 
-  spec.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.md", "CHANGELOG.md"]
+  spec.files = Dir["{app,lib}/**/*", "LICENSE", "Rakefile", "README.md", "CHANGELOG.md"]
   spec.require_paths = ["lib"]
 
   spec.add_dependency "rails", ">= 5.0", "< 7.1"
