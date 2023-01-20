@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+0.1.4
+-----
+- add data-callback support; mock javascript
+
 0.1.3
 -----
 - Add mocked functionality in dev/test
