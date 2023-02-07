@@ -14,13 +14,13 @@ module RailsCloudflareTurnstile
       end
     end
 
-    def cloudflare_turnstile_script_tag
+    def cloudflare_turnstile_script_tag(async: true, defer: true)
       if RailsCloudflareTurnstile.enabled?
-        content_tag(:script, :src => js_src, "async" => true) do
+        content_tag(:script, src: js_src, async: async, defer: defer) do
           ""
         end
       elsif RailsCloudflareTurnstile.mock_enabled?
-        content_tag(:script, :src => mock_js, "async" => true) do
+        content_tag(:script, src: mock_js, async: async, defer: defer) do
           ""
         end
       end
