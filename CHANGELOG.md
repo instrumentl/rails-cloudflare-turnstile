@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+0.1.5
+-----
+- allow configuring async and defer options of turnstile scripts
+
 0.1.4
 -----
 - add data-callback support; mock javascript
