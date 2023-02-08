@@ -3,3 +3,8 @@ inherit_gem:
   standard: config/base.yml
 AllCops:
   TargetRubyVersion: 2.7
+  Exclude:
+    - 'vendor/bundle/**/*'
+    - 'tmp/**/*'
+    - 'public/**/*'
+    - 'bin/{bundle,rails,rake,spring}'
