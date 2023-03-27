@@ -5,8 +5,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gemspec
 
-gem "faraday", "~> 1.0"
-gem "rails", "~> 6.1.7.1"
+gem "faraday", ">= 1.0", "< 3.0"
+gem "rails", ">= 6", "< 8"
 gem "rake", "~> 13.0"
 
 group :development, :test do
