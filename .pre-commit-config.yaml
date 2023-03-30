@@ -12,7 +12,7 @@ repos:
     exclude: '^spec/data/'
   - id: check-merge-conflict
 - repo: https://github.com/rubocop/rubocop.git
-  rev: '8b9b97f7afb80a17e48a3bb01be23419b1907a53'
+  rev: '675114c1b5a1999a112f8adaad8c99f8de6f7bcc'
   hooks:
     - id: rubocop
-      additional_dependencies: ["standard:1.23.0"]
+      additional_dependencies: ["standard:1.25.3"]
