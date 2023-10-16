@@ -1,6 +1,11 @@
 ChangeLog
 =========
 
+0.1.6
+-----
+- support Rails 7.1.x (#87, thanks @AliOsm)
+- an endless number of dependency bumps (thanks @dependabot)
+
 0.1.5
 -----
 - allow configuring async and defer options of turnstile scripts
