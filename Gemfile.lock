@@ -3,7 +3,7 @@ PATH
   specs:
     rails_cloudflare_turnstile (0.1.5)
       faraday (>= 1.0, < 3.0)
-      rails (>= 5.0, < 7.1)
+      rails (>= 6.0, < 8)
 
 GEM
   remote: https://rubygems.org/
