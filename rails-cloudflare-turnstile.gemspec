@@ -11,11 +11,11 @@ Gem::Specification.new do |spec|
   spec.summary = "Rails extension for Cloudflare's Turnstile CAPTCHA alternative"
   spec.description = <<-EOF
     Rails extension for Cloudflare's Turnstile CAPTCHA alternative. This gem should work with
-    Rails 5.x, 6.x, and 7.x, and with Faraday 1.x and 2.x.
+    Rails 6.x and 7.x, and with Faraday 1.x and 2.x.
   EOF
   spec.homepage = "https://github.com/instrumentl/rails-cloudflare-turnstile"
   spec.license = "ISC"
-  spec.required_ruby_version = ">= 2.7.0"
+  spec.required_ruby_version = ">= 3.0.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/instrumentl/rails-cloudflare-turnstile"
