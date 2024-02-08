@@ -1,6 +1,11 @@
 ChangeLog
 =========
 
+0.2.0
+-----
+- drop support for Ruby 2.7
+- drop support for Rails 5
+
 0.1.6
 -----
 - support Rails 7.1.x (#87, thanks @AliOsm)
