@@ -67,9 +67,10 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
-    addressable (2.8.5)
+    addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
+    bigdecimal (3.1.6)
     builder (3.2.4)
     bundle-audit (0.1.0)
       bundler-audit
@@ -78,7 +79,8 @@ GEM
       thor (~> 1.0)
     coderay (1.1.3)
     concurrent-ruby (1.2.2)
-    crack (0.4.5)
+    crack (1.0.0)
+      bigdecimal
       rexml
     crass (1.0.6)
     date (3.3.3)
@@ -109,7 +111,7 @@ GEM
     faraday-retry (1.0.3)
     globalid (1.1.0)
       activesupport (>= 5.0)
-    hashdiff (1.0.1)
+    hashdiff (1.1.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     json (2.7.1)
@@ -153,7 +155,7 @@ GEM
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    public_suffix (5.0.3)
+    public_suffix (5.0.4)
     racc (1.7.3)
     rack (2.2.8)
     rack-test (2.1.0)
@@ -260,7 +262,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
-    webmock (3.19.1)
+    webmock (3.20.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -288,7 +290,7 @@ DEPENDENCIES
   rspec-rails (~> 6)
   sqlite3
   standard (~> 1)
-  webmock (~> 3.19)
+  webmock (~> 3.20)
 
 BUNDLED WITH
    2.4.22
