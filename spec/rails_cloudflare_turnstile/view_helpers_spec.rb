@@ -60,7 +60,7 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
 
     describe "#cloudflare_turnstile" do
       it do
-        expect(subject.cloudflare_turnstile(action: "an-action")).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"regular\" data-action=\"an-action\" data-theme=\"auto\"></div></div>"
+        expect(subject.cloudflare_turnstile(action: "an-action")).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"normal\" data-action=\"an-action\" data-theme=\"auto\"></div></div>"
       end
     end
   end
