@@ -7,7 +7,7 @@ gemspec
 
 gem "faraday", ">= 1.0", "< 3.0"
 gem "rails", ">= 6", "< 8"
-gem "rake", "~> 13.1"
+gem "rake", "~> 13.2"
 
 group :development, :test do
   gem "sqlite3"
