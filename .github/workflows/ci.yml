@@ -25,6 +25,7 @@ jobs:
         with:
           bundler-cache: true
           ruby-version: ${{ matrix.ruby }}
+          rubygems: "3.5.9"
       - name: Run RSpec Tests
         timeout-minutes: 20
         run: bundle exec rspec -f doc
