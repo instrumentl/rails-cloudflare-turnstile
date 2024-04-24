@@ -38,7 +38,7 @@ To totally disable Turnstile, you can set `c.enabled = false` and all other conf
 To use Turnstile for a view:
 
    1. Call `cloudflare_turnstile_script_tag` in your layout
-   2. Call `cloudflare_turnstile` in your form View
+   2. Call `cloudflare_turnstile` in your form View. Keyword arguments are passed to the tag helper (for example, to set the `tabindex` option, you could use `cloudflare_turnstile(data: {tabindex: 0})`)
    3. Call `validate_cloudflare_turnstile` as a `before_action` in your controller.
 
 If the challenge fails, the exception `RailsCloudflareTurnstile::Forbidden` will be raised; you should handle this with
