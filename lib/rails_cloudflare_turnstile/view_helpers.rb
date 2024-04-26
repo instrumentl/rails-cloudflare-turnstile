@@ -2,14 +2,14 @@
 
 module RailsCloudflareTurnstile
   module ViewHelpers
-    def cloudflare_turnstile(action: "other", data_callback: nil)
+    def cloudflare_turnstile(action: "other", data_callback: nil, **html_options)
       if RailsCloudflareTurnstile.enabled?
         content_tag(:div, class: "cloudflare-turnstile") do
-          concat turnstile_div(action, data_callback: data_callback)
+          concat turnstile_div(action, data_callback: data_callback, **html_options)
         end
       elsif RailsCloudflareTurnstile.mock_enabled?
         content_tag(:div, class: "cloudflare-turnstile") do
-          concat mock_turnstile_div(action, data_callback: data_callback)
+          concat mock_turnstile_div(action, data_callback: data_callback, **html_options)
         end
       end
     end
@@ -28,15 +28,15 @@ module RailsCloudflareTurnstile
 
     private
 
-    def turnstile_div(action, data_callback: nil)
+    def turnstile_div(action, data_callback: nil, **html_options)
       config = RailsCloudflareTurnstile.configuration
-      content_tag(:div, :class => "cf-turnstile", "data-sitekey" => site_key, "data-size" => config.size, "data-action" => action, "data-callback" => data_callback, "data-theme" => config.theme) do
+      content_tag(:div, :class => "cf-turnstile", "data-sitekey" => site_key, "data-size" => config.size, "data-action" => action, "data-callback" => data_callback, "data-theme" => config.theme, **html_options) do
         ""
       end
     end
 
-    def mock_turnstile_div(action, data_callback: nil)
-      content_tag(:div, :class => "cf-turnstile", :style => "width: 300px; height: 65px; border: 1px solid gray; display: flex; flex-direction: row; justify-content: center; align-items: center; margin: 10px;", "data-callback" => data_callback) do
+    def mock_turnstile_div(action, data_callback: nil, **html_options)
+      content_tag(:div, :class => "cf-turnstile", :style => "width: 300px; height: 65px; border: 1px solid gray; display: flex; flex-direction: row; justify-content: center; align-items: center; margin: 10px;", "data-callback" => data_callback, **html_options) do
         [
           tag.input(type: "hidden", name: "cf-turnstile-response", value: "mocked"),
           image_tag("turnstile-logo.svg"),
