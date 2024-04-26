@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+0.2.1
+-----
+- Add support for passing arbitary keyword arguments to the underlying `content_tag` from the `cloudflare_turnstile` helper
+
 0.2.0
 -----
 - drop support for Ruby 2.7
