@@ -19,9 +19,9 @@ jobs:
         ruby: ["3.0", "3.1", "3.2", "3.3"]
     steps:
       - name: Checkout code
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+        uses: actions/checkout@v4
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@3783f195e29b74ae398d7caca108814bbafde90e
+        uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
           ruby-version: ${{ matrix.ruby }}
@@ -36,16 +36,16 @@ jobs:
       contents: read
     steps:
       - name: Checkout code
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+        uses: actions/checkout@v4
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@3783f195e29b74ae398d7caca108814bbafde90e
+        uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
           ruby-version: "3.1"
       - name: Bundle Audit Check
         run: bundle exec bundle-audit update && bundle exec bundle-audit check
       - name: Setup Python
-        uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - name: Run pre-commit

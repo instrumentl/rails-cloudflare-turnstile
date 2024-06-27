@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+        uses: actions/checkout@v4
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@3783f195e29b74ae398d7caca108814bbafde90e
+        uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
           ruby-version: "3.3"
