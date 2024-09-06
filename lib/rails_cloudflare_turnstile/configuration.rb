@@ -42,7 +42,7 @@ module RailsCloudflareTurnstile
       raise "Must set site key" if @site_key.nil?
       raise "Must set secret key" if @secret_key.nil?
       @size = @size.to_sym
-      raise "Size must be one of ':regular' or ':compact'" unless [:regular, :compact].include? @size
+      raise "Size must be one of ':regular', ':compact', or ':flexible'" unless [:regular, :compact, :flexible].include? @size
       raise "Theme must be one of :auto, :light, or :dark" unless [:auto, :light, :dark].include? @theme
     end
 
