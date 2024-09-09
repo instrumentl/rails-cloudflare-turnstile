@@ -13,7 +13,7 @@ gem "rake", "~> 13.2"
 
 group :development, :test do
   gem "sqlite3"
-  gem "rspec-rails", "~> 6"
+  gem "rspec-rails", "~> 7"
   gem "rspec", "~> 3.13"
   gem "rspec-its", "~> 1.3"
   gem "standard", "~> 1"
