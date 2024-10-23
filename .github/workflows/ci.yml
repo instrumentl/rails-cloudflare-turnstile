@@ -41,12 +41,12 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          ruby-version: "3.1"
+          ruby-version: "3.3"
       - name: Bundle Audit Check
         run: bundle exec bundle-audit update && bundle exec bundle-audit check
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
       - name: Run pre-commit
         uses: instrumentl/pre-commit-action@v4
