@@ -11,8 +11,7 @@ repos:
   - id: check-byte-order-marker
     exclude: '^spec/data/'
   - id: check-merge-conflict
-- repo: https://github.com/rubocop/rubocop.git
-  rev: 'v1.66.0'
+- repo: https://github.com/instrumentl/pre-commit-standardrb.git
+  rev: 'v1.41.1'
   hooks:
-    - id: rubocop
-      additional_dependencies: ["standard:1.41.1"]
+    - id: standardrb
