@@ -153,7 +153,7 @@ GEM
     minitest (5.25.1)
     multipart-post (2.4.1)
     mutex_m (0.2.0)
-    net-imap (0.5.0)
+    net-imap (0.4.17)
       date
       net-protocol
     net-pop (0.1.2)
