@@ -11,7 +11,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     reviewers:
-      - instrumentl/code-reviewers
+      - instrumentl/libero
     labels:
       - ":robot: dependabot"
       - ":octocat: github-actions"
@@ -22,7 +22,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     reviewers:
-      - instrumentl/code-reviewers
+      - instrumentl/libero
     labels:
       - ":robot: dependabot"
       - ":gem: ruby"
