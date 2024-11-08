@@ -8,7 +8,7 @@ gemspec
 gem "base64"
 gem "mutex_m"
 gem "faraday", ">= 1.0", "< 3.0"
-gem "rails", ">= 6", "< 8"
+gem "rails", ">= 6", "< 9"
 gem "rake", "~> 13.2"
 
 group :development, :test do
