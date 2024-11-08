@@ -3,7 +3,7 @@ PATH
   specs:
     rails_cloudflare_turnstile (0.2.1)
       faraday (>= 1.0, < 3.0)
-      rails (>= 6.0, < 9)
+      rails (>= 6.0, < 8.1)
 
 GEM
   remote: https://rubygems.org/
@@ -313,7 +313,7 @@ DEPENDENCIES
   faraday (>= 1.0, < 3.0)
   mutex_m
   pry (~> 0.14.1)
-  rails (>= 6, < 9)
+  rails (>= 6, < 8.1)
   rails_cloudflare_turnstile!
   rake (~> 13.2)
   rspec (~> 3.13)
