@@ -24,6 +24,6 @@ Gem::Specification.new do |spec|
   spec.files = Dir["{app,lib}/**/*", "LICENSE", "Rakefile", "README.md", "CHANGELOG.md"]
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "rails", ">= 6.0", "< 8"
+  spec.add_dependency "rails", ">= 6.0", "< 9"
   spec.add_dependency "faraday", ">= 1.0", "< 3.0"
 end
