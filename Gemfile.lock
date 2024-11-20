@@ -180,7 +180,7 @@ GEM
     parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
-    pry (0.14.2)
+    pry (0.15.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
     psych (5.2.0)
@@ -316,7 +316,7 @@ DEPENDENCIES
   bundle-audit (~> 0.1.0)
   faraday (>= 1.0, < 3.0)
   mutex_m
-  pry (~> 0.14.1)
+  pry (~> 0.15.0)
   rails (>= 6, < 8)
   rails_cloudflare_turnstile!
   rake (~> 13.2)
