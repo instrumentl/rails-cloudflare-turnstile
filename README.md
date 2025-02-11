@@ -53,7 +53,7 @@ The `cloudflare_turnstile` view helper simplifies Turnstile implementation by pr
 
 Example usage:
 ```erb
-<%= cloudflare_turnstile('data-callback': 'exampleJsCallback', 'data-error-callback': 'exampleErrorJsCallback') %>
+<%= cloudflare_turnstile(data: { callback: 'exampleJsCallback', 'error-callback': 'handleErrorJsCallback' }) %>
 ```
 
 ### Configuration Reference Table
