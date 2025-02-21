@@ -2,9 +2,9 @@ require: standard
 inherit_gem:
   standard: config/base.yml
 AllCops:
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.4
   Exclude:
-    - 'vendor/bundle/**/*'
-    - 'tmp/**/*'
-    - 'public/**/*'
-    - 'bin/{bundle,rails,rake,spring}'
+    - "vendor/bundle/**/*"
+    - "tmp/**/*"
+    - "public/**/*"
+    - "bin/{bundle,rails,rake,spring}"
