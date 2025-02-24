@@ -45,7 +45,7 @@ If the challenge fails, the exception `RailsCloudflareTurnstile::Forbidden` will
 a `rescue_from` block.
 
 By default, in development and test mode, a special mock view will be inserted if real credentials are not present. To
-disable this, set the `mock_enable` property of the configuration to false.
+disable this, set the `mock_enabled` property of the configuration to false.
 
 ## License
 The gem is available as open source under the terms of the [ISC License](LICENSE.txt).
