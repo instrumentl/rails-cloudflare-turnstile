@@ -33,7 +33,7 @@ module RailsCloudflareTurnstile
       @enabled = nil
       @mock_enabled = nil
       @timeout = 5.0
-      @size = :regular
+      @size = :normal
       @theme = :auto
       @validation_url = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
     end
