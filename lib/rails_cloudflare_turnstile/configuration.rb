@@ -16,7 +16,7 @@ module RailsCloudflareTurnstile
     # Timeout for operations with Cloudflare
     attr_accessor :timeout
 
-    # size for the widget (:regular or :compact)
+    # size for the widget (:normal, :flexible, or :compact)
     attr_accessor :size
 
     # theme for the widget (:auto, :light, or :dark)
@@ -42,7 +42,7 @@ module RailsCloudflareTurnstile
       raise "Must set site key" if @site_key.nil?
       raise "Must set secret key" if @secret_key.nil?
       @size = @size.to_sym
-      raise "Size must be one of ':regular' or ':compact'" unless [:regular, :compact].include? @size
+      raise "Size must be one of ':normal', ':flexible', or ':compact'" unless [:normal, :flexible, :compact].include? @size
       raise "Theme must be one of :auto, :light, or :dark" unless [:auto, :light, :dark].include? @theme
     end
 
