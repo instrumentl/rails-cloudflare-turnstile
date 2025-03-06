@@ -320,7 +320,7 @@ DEPENDENCIES
   faraday (>= 1.0, < 3.0)
   mutex_m
   pry (~> 0.15.2)
-  rails (>= 6, < 8)
+  rails (>= 6, < 9)
   rails_cloudflare_turnstile!
   rake (~> 13.2)
   rspec (~> 3.13)
