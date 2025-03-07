@@ -1,6 +1,12 @@
 ChangeLog
 =========
 
+0.2.2
+-----
+- Resolve CVE-2025-27111
+- Fix broken unit tests and update method documentation.
+- Fix standardrb linting error.
+
 0.2.1
 -----
 - Add support for passing arbitary keyword arguments to the underlying `content_tag` from the `cloudflare_turnstile` helper

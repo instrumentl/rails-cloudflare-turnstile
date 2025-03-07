@@ -16,7 +16,7 @@ module RailsCloudflareTurnstile
     # Timeout for operations with Cloudflare
     attr_accessor :timeout
 
-    # size for the widget (:regular or :compact)
+    # size for the widget (:regular, :compact, or :flexible)
     attr_accessor :size
 
     # theme for the widget (:auto, :light, or :dark)
