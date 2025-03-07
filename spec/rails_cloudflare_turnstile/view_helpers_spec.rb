@@ -48,13 +48,13 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
 
     describe "#cloudflare_turnstile_script_tag" do
       it "should allow overriding async and defer" do
-        expect(subject.cloudflare_turnstile_script_tag(async: false, defer: false)).to eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js\"></script>"
-        expect(subject.cloudflare_turnstile_script_tag(async: true, defer: false)).to eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js\" async=\"async\"></script>"
-        expect(subject.cloudflare_turnstile_script_tag(async: false, defer: true)).to eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js\" defer=\"defer\"></script>"
+        expect(subject.cloudflare_turnstile_script_tag(async: false, defer: false)).to eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js\" data-turbo-track=\"reload\" data-turbo-temporary=\"true\"></script>"
+        expect(subject.cloudflare_turnstile_script_tag(async: true, defer: false)).to eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js\" async=\"async\" data-turbo-track=\"reload\" data-turbo-temporary=\"true\"></script>"
+        expect(subject.cloudflare_turnstile_script_tag(async: false, defer: true)).to eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js\" defer=\"defer\" data-turbo-track=\"reload\" data-turbo-temporary=\"true\"></script>"
       end
 
       it "generates a script tag with async and defer" do
-        expect(subject.cloudflare_turnstile_script_tag).to eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js\" async=\"async\" defer=\"defer\"></script>"
+        expect(subject.cloudflare_turnstile_script_tag).to eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js\" async=\"async\" defer=\"defer\" data-turbo-track=\"reload\" data-turbo-temporary=\"true\"></script>"
       end
     end
 
@@ -77,7 +77,7 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
       end
     end
 
-    its(:cloudflare_turnstile_script_tag) { should eq "<script src=\"/mock/mock_cloudflare_turnstile_api.js\" async=\"async\" defer=\"defer\"></script>" }
+    its(:cloudflare_turnstile_script_tag) { should eq "<script src=\"/mock/mock_cloudflare_turnstile_api.js\" async=\"async\" defer=\"defer\" data-turbo-track=\"reload\" data-turbo-temporary=\"true\"></script>" }
 
     describe "#cloudflare_turnstile" do
       it do
