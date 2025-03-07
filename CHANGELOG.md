@@ -1,6 +1,12 @@
 ChangeLog
 =========
 
+0.3.0
+-----
+- drop support for Ruby 3.1
+- replace bundle-audit with bundler-audit
+- support Rails 8.0.x
+
 0.2.2
 -----
 - Resolve CVE-2025-27111
