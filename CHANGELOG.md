@@ -4,6 +4,8 @@ ChangeLog
 0.2.2
 -----
 - Resolve CVE-2025-27111
+- Fix broken unit tests and update method documentation.
+- Fix standardrb linting error.
 
 0.2.1
 -----
