@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+0.2.2
+-----
+- Resolve CVE-2025-27111
+
 0.2.1
 -----
 - Add support for passing arbitary keyword arguments to the underlying `content_tag` from the `cloudflare_turnstile` helper
