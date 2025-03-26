@@ -2,13 +2,15 @@
 
 module RailsCloudflareTurnstile
   module ViewHelpers
-    def cloudflare_turnstile(action: "other", data_callback: nil, **html_options)
+    def cloudflare_turnstile(action: "other", data_callback: nil, container_class: nil, **html_options)
+      container_class = ["cloudflare-turnstile", container_class].compact.join(" ")
+
       if RailsCloudflareTurnstile.enabled?
-        content_tag(:div, class: "cloudflare-turnstile") do
+        content_tag(:div, class: container_class) do
           concat turnstile_div(action, data_callback: data_callback, **html_options)
         end
       elsif RailsCloudflareTurnstile.mock_enabled?
-        content_tag(:div, class: "cloudflare-turnstile") do
+        content_tag(:div, class: container_class) do
           concat mock_turnstile_div(action, data_callback: data_callback, **html_options)
         end
       end
