@@ -56,6 +56,10 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
       it "generates a script tag with async and defer" do
         expect(subject.cloudflare_turnstile_script_tag).to eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js\" async=\"async\" defer=\"defer\" data-turbo-track=\"reload\" data-turbo-temporary=\"true\"></script>"
       end
+
+      it "should allow using the explicitly rendered version of widget" do
+        expect(subject.cloudflare_turnstile_script_tag(explicit: true)).to eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit\" async=\"async\" defer=\"defer\" data-turbo-track=\"reload\" data-turbo-temporary=\"true\"></script>"
+      end
     end
 
     describe "#cloudflare_turnstile" do
