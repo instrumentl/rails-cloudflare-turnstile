@@ -14,9 +14,9 @@ module RailsCloudflareTurnstile
       end
     end
 
-    def cloudflare_turnstile_script_tag(async: true, defer: true)
+    def cloudflare_turnstile_script_tag(async: true, defer: true, explicit: false)
       if RailsCloudflareTurnstile.enabled?
-        content_tag(:script, src: js_src, async: async, defer: defer, data: {turbo_track: "reload", turbo_temporary: true}) do
+        content_tag(:script, src: js_src(explicit:), async: async, defer: defer, data: {turbo_track: "reload", turbo_temporary: true}) do
           ""
         end
       elsif RailsCloudflareTurnstile.mock_enabled?
@@ -51,8 +51,12 @@ module RailsCloudflareTurnstile
       RailsCloudflareTurnstile.configuration.site_key
     end
 
-    def js_src
-      "https://challenges.cloudflare.com/turnstile/v0/api.js"
+    def js_src(explicit: false)
+      if explicit
+        "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+      else
+        "https://challenges.cloudflare.com/turnstile/v0/api.js"
+      end
     end
 
     def mock_js
