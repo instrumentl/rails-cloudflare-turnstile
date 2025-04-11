@@ -1,6 +1,15 @@
 ChangeLog
 =========
 
+0.4.0
+-----
+- add the ability to use explicit-render mode by passing `explicit: true` to `cloudflare_turnstile_script_tag` (thanks @adillari)
+- adds the ability to set custom CSS classes on the turnstile element by passing `container_class:` to the `cloudflare_turnstile` helper (thanks @adillari)
+
+0.3.1 (unreleased)
+------------------
+- bump rack dependency to address CVE
+
 0.3.0
 -----
 - drop support for Ruby 3.1
