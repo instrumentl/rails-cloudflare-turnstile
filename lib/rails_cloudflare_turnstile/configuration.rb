@@ -39,8 +39,8 @@ module RailsCloudflareTurnstile
     end
 
     def validate!
-      raise "Must set site key" if @site_key.nil?
-      raise "Must set secret key" if @secret_key.nil?
+      raise "Must set site key" if @site_key.nil? && !ENV["SECRET_KEY_BASE_DUMMY"]
+      raise "Must set secret key" if @secret_key.nil? && !ENV["SECRET_KEY_BASE_DUMMY"]
       @size = @size.to_sym
       raise "Size must be one of ':regular', ':compact' or ':flexible'" unless [:regular, :compact, :flexible].include? @size
       raise "Theme must be one of :auto, :light, or :dark" unless [:auto, :light, :dark].include? @theme
