@@ -71,6 +71,10 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
         expect(subject.cloudflare_turnstile(action: "an-action", data: {appearance: "interaction-only"})).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"regular\" data-action=\"an-action\" data-theme=\"auto\" data-appearance=\"interaction-only\"></div></div>"
       end
 
+      it "overrides size and theme config through HTML options" do
+        expect(subject.cloudflare_turnstile(data: {size: "compact", theme: "light"})).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"compact\" data-action=\"other\" data-theme=\"light\"></div></div>"
+      end
+
       it "passes through container classes" do
         expect(subject.cloudflare_turnstile(container_class: "wrapper")).to eq "<div class=\"cloudflare-turnstile wrapper\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"regular\" data-action=\"other\" data-theme=\"auto\"></div></div>"
       end
