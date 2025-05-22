@@ -20,9 +20,17 @@ jobs:
       contents: read
       pull-requests: write
     steps:
+      - name: Generate a token
+        id: generate_token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.DEPENDABOT_AUTO_MERGER_APP_ID }}
+          private-key: ${{ secrets.DEPENDABOT_AUTO_MERGER_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
       - name: Auto Assign libero for reviewer
         run: gh pr edit "$PR_URL" --add-reviewer "$REVIEWER"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           REVIEWER: instrumentl/libero
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
