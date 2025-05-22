@@ -1,6 +1,11 @@
 ChangeLog
 =========
 
+0.4.1
+-----
+- bump net-imap, nokogiri, rack and rack-session dependencies to address CVEs
+- fix for normal widget size (thanks @yenshirak)
+
 0.4.0
 -----
 - add the ability to use explicit-render mode by passing `explicit: true` to `cloudflare_turnstile_script_tag` (thanks @adillari)
