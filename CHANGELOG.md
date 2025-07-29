@@ -1,6 +1,10 @@
 ChangeLog
 =========
 
+0.4.2
+-----
+- various dependencies updates to address CVEs
+
 0.4.1
 -----
 - bump net-imap, nokogiri, rack and rack-session dependencies to address CVEs
