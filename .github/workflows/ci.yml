@@ -45,7 +45,7 @@ jobs:
       - name: Bundle Audit Check
         run: bundle exec bundle-audit update && bundle exec bundle-audit check
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.13"
       - name: Run pre-commit
