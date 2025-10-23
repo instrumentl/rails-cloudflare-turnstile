@@ -1,5 +1,9 @@
 ChangeLog
 =========
+0.4.3
+-----
+- Add support for Rails 8.1
+- Various dependencies updates to address CVEs
 
 0.4.2
 -----
