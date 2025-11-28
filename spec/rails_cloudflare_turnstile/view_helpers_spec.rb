@@ -91,6 +91,18 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
       it "combines dynamic theme with other data attributes" do
         expect(subject.cloudflare_turnstile(action: "an-action", data: {theme: "dark", appearance: "interaction-only"})).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"normal\" data-action=\"an-action\" data-theme=\"dark\" data-appearance=\"interaction-only\"></div></div>"
       end
+
+      it "allows dynamic size override with string" do
+        expect(subject.cloudflare_turnstile(action: "an-action", data: {size: "compact"})).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"compact\" data-action=\"an-action\" data-theme=\"auto\"></div></div>"
+      end
+
+      it "allows dynamic size override with symbol" do
+        expect(subject.cloudflare_turnstile(action: "an-action", data: {size: :flexible})).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"flexible\" data-action=\"an-action\" data-theme=\"auto\"></div></div>"
+      end
+
+      it "allows dynamic size and theme override together" do
+        expect(subject.cloudflare_turnstile(action: "an-action", data: {size: "compact", theme: "dark"})).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"compact\" data-action=\"an-action\" data-theme=\"dark\"></div></div>"
+      end
     end
   end
 

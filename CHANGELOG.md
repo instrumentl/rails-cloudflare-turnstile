@@ -2,7 +2,7 @@ ChangeLog
 =========
 Unreleased
 ----------
-- Fixes bug where dynamic theme override via `data` attribute resulted in duplicate `data-theme` attributes. Now when you pass `data: {theme: "dark"}` to the `cloudflare_turnstile` helper, it overrides the global theme configuration on a per-instance basis and only sets the `data-theme` attribute once.
+- Fixes bug where dynamic theme/size override via `data` attributes resulted in duplicate `data-theme` and `data-size` attributes. Now when you pass `data: {theme: "dark", size: "compact"}` to the `cloudflare_turnstile` helper, it overrides the global configuration on a per-instance basis and only outputs each attribute once.
 
 0.4.3
 -----

@@ -47,24 +47,26 @@ a `rescue_from` block.
 By default, in development and test mode, a special mock view will be inserted if real credentials are not present. To
 disable this, set the `mock_enabled` property of the configuration to false.
 
-## Light and dark mode
+## Customizing theme and size
 
-The widget theme can be configured globally and overridden per instance:
+The widget theme and size can be configured globally and overridden per instance:
 
-**Global theme** (set in initializer):
+**Global configuration** (set in initializer):
 ```ruby
 RailsCloudflareTurnstile.configure do |c|
-  c.theme = :dark  # :auto (default), :light, or :dark
+  c.size = :normal   # :normal (default), :compact, or :flexible
+  c.theme = :dark    # :auto (default), :light, or :dark
 end
 ```
 
 **Per-instance override** (in your view):
 ```erb
 <%= cloudflare_turnstile(data: {theme: "dark"}) %>
-<%= cloudflare_turnstile(data: {theme: "light"}) %>
+<%= cloudflare_turnstile(data: {size: "compact"}) %>
+<%= cloudflare_turnstile(data: {size: "compact", theme: "dark"}) %>
 ```
 
-The per-instance theme will override the global configuration. Both strings and symbols are accepted.
+Per-instance values will override the global configuration. Both strings and symbols are accepted.
 
 ## License
 The gem is available as open source under the terms of the [ISC License](LICENSE.txt).
