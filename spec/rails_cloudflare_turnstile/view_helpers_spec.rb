@@ -74,6 +74,23 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
       it "passes through container classes" do
         expect(subject.cloudflare_turnstile(container_class: "wrapper")).to eq "<div class=\"cloudflare-turnstile wrapper\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"normal\" data-action=\"other\" data-theme=\"auto\"></div></div>"
       end
+
+      it "allows dynamic theme override with string" do
+        expect(subject.cloudflare_turnstile(action: "an-action", data: {theme: "dark"})).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"normal\" data-action=\"an-action\" data-theme=\"dark\"></div></div>"
+      end
+
+      it "allows dynamic theme override with symbol" do
+        expect(subject.cloudflare_turnstile(action: "an-action", data: {theme: :light})).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"normal\" data-action=\"an-action\" data-theme=\"light\"></div></div>"
+      end
+
+      it "dynamic theme does not duplicate data-theme attribute" do
+        result = subject.cloudflare_turnstile(action: "an-action", data: {theme: "dark"})
+        expect(result.scan(/data-theme/).count).to eq 1
+      end
+
+      it "combines dynamic theme with other data attributes" do
+        expect(subject.cloudflare_turnstile(action: "an-action", data: {theme: "dark", appearance: "interaction-only"})).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"normal\" data-action=\"an-action\" data-theme=\"dark\" data-appearance=\"interaction-only\"></div></div>"
+      end
     end
   end
 
