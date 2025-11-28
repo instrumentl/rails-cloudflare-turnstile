@@ -32,7 +32,9 @@ module RailsCloudflareTurnstile
 
     def turnstile_div(action, data_callback: nil, **html_options)
       config = RailsCloudflareTurnstile.configuration
-      content_tag(:div, :class => "cf-turnstile", "data-sitekey" => site_key, "data-size" => config.size, "data-action" => action, "data-callback" => data_callback, "data-theme" => config.theme, **html_options) do
+      theme = html_options[:data]&.delete(:theme) || config.theme
+
+      content_tag(:div, :class => "cf-turnstile", "data-sitekey" => site_key, "data-size" => config.size, "data-action" => action, "data-callback" => data_callback, "data-theme" => theme, **html_options) do
         ""
       end
     end
