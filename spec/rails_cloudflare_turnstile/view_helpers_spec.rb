@@ -85,7 +85,7 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
 
       it "dynamic theme does not duplicate data-theme attribute" do
         result = subject.cloudflare_turnstile(action: "an-action", data: {theme: "dark"})
-        expect(result.scan(/data-theme/).count).to eq 1
+        expect(result.scan("data-theme").count).to eq 1
       end
 
       it "combines dynamic theme with other data attributes" do
