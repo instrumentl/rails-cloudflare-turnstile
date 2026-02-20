@@ -1,6 +1,16 @@
 ChangeLog
 =========
 
+0.5.0
+-----
+- **BREAKING**: Update minimum Ruby requirement from >= 3.0.0 to >= 3.2.0
+  - Ruby 3.0 reached EOL in March 2024
+  - Ruby 3.1 reached EOL in March 2025
+  - This aligns with Rails 8.x (requires Ruby >= 3.2.0) and Bundler 2.7.x requirements
+  - Rails 6.x and 7.x continue to be supported with Ruby 3.2+
+- Add .ruby-version file (3.2.10) for development consistency
+- Fix Dependabot dependency resolution issues
+
 0.4.5
 -----
 - Update Faraday dependency to 2.14.1 to address CVE-2026-25765 (SSRF vulnerability via protocol-relative URLs)
