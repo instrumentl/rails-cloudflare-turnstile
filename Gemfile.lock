@@ -219,7 +219,7 @@ GEM
       tsort (>= 0.2)
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
-    rake (13.3.0)
+    rake (13.3.1)
     rdoc (6.15.0)
       erb
       psych (>= 4.0.0)
@@ -331,7 +331,7 @@ DEPENDENCIES
   pry (~> 0.15.2)
   rails (>= 6, < 8.2)
   rails_cloudflare_turnstile!
-  rake (~> 13.2)
+  rake (~> 13.3)
   rspec (~> 3.13)
   rspec-its (~> 2.0)
   rspec-rails (~> 7)
