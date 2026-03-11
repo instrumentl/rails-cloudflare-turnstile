@@ -60,6 +60,14 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
       it "should allow using the explicitly rendered version of widget" do
         expect(subject.cloudflare_turnstile_script_tag(explicit: true)).to eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit\" async=\"async\" defer=\"defer\" data-turbo-track=\"reload\" data-turbo-temporary=\"true\"></script>"
       end
+
+      it "should add additional params to the script tag" do
+        expect(subject.cloudflare_turnstile_script_tag(additional_params: ["onload=onloadCallback"])).to eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadCallback\" async=\"async\" defer=\"defer\" data-turbo-track=\"reload\" data-turbo-temporary=\"true\"></script>"
+      end
+
+      it "should add the explicit render and any additional params to the script tag" do
+        expect(subject.cloudflare_turnstile_script_tag(explicit: true, additional_params: ["onload=onloadCallback"])).to eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&amp;onload=onloadCallback\" async=\"async\" defer=\"defer\" data-turbo-track=\"reload\" data-turbo-temporary=\"true\"></script>"
+      end
     end
 
     describe "#cloudflare_turnstile" do
