@@ -172,9 +172,10 @@ GEM
       prettyprint
     prettyprint (0.2.0)
     prism (1.6.0)
-    pry (0.15.2)
+    pry (0.16.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
+      reline (>= 0.6.0)
     psych (5.2.6)
       date
       stringio
@@ -328,7 +329,7 @@ DEPENDENCIES
   bundler-audit (~> 0.9.3)
   faraday (>= 1.0, < 3.0)
   mutex_m
-  pry (~> 0.15.2)
+  pry (~> 0.16.0)
   rails (>= 6, < 8.2)
   rails_cloudflare_turnstile!
   rake (~> 13.2)
