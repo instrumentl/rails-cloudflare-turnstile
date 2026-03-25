@@ -18,6 +18,6 @@ group :development, :test do
   gem "rspec-its", "~> 2.0"
   gem "standard", "~> 1"
   gem "pry", "~> 0.16.0"
-  gem "webmock", "~> 3.24"
+  gem "webmock", "~> 3.26"
   gem "bundler-audit", "~> 0.9.3"
 end
