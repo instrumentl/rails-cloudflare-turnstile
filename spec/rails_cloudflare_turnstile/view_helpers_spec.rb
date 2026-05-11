@@ -60,6 +60,14 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
       it "should allow using the explicitly rendered version of widget" do
         expect(subject.cloudflare_turnstile_script_tag(explicit: true)).to eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit\" async=\"async\" defer=\"defer\" data-turbo-track=\"reload\" data-turbo-temporary=\"true\"></script>"
       end
+
+      it "should pass through html options to the script tag" do
+        expect(subject.cloudflare_turnstile_script_tag(nonce: "abc123")).to eq '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async="async" defer="defer" data-turbo-track="reload" data-turbo-temporary="true" nonce="abc123"></script>'
+      end
+
+      it "should support nonce with explicit rendering" do
+        expect(subject.cloudflare_turnstile_script_tag(explicit: true, nonce: "abc123")).to eq '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async="async" defer="defer" data-turbo-track="reload" data-turbo-temporary="true" nonce="abc123"></script>'
+      end
     end
 
     describe "#cloudflare_turnstile" do
