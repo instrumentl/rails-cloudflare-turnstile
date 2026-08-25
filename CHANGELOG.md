@@ -1,6 +1,11 @@
 ChangeLog
 =========
 
+0.5.1
+-----
+  - Ruby 4.0 support added.
+  - Dependencies updates
+
 0.5.0
 -----
 - **BREAKING**: Update minimum Ruby requirement from >= 3.0.0 to >= 3.2.0
