@@ -16,11 +16,17 @@ module RailsCloudflareTurnstile
       end
     end
 
-    def cloudflare_turnstile_script_tag(async: true, defer: true, explicit: false, **html_options)
+    # turbo_reload: true (the default) marks the tag data-turbo-track="reload"
+    # and data-turbo-temporary, which can force full page loads in Turbo Drive.
+    # Pass false to keep Turbo Drive, and render widgets yourself (see
+    # "Using with Turbo" in the README).
+    def cloudflare_turnstile_script_tag(async: true, defer: true, explicit: false, turbo_reload: true, **html_options)
+      turbo = turbo_reload ? {data: {turbo_track: "reload", turbo_temporary: true}} : {}
+
       if RailsCloudflareTurnstile.enabled?
-        content_tag(:script, "", src: js_src(explicit:), async: async, defer: defer, data: {turbo_track: "reload", turbo_temporary: true}, **html_options)
+        content_tag(:script, "", src: js_src(explicit:), async: async, defer: defer, **turbo, **html_options)
       elsif RailsCloudflareTurnstile.mock_enabled?
-        content_tag(:script, "", src: mock_js, async: async, defer: defer, data: {turbo_track: "reload", turbo_temporary: true}, **html_options)
+        content_tag(:script, "", src: mock_js, async: async, defer: defer, **turbo, **html_options)
       end
     end
 

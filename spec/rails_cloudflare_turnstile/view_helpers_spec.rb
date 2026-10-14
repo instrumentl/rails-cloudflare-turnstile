@@ -70,6 +70,20 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
       end
     end
 
+    describe "#cloudflare_turnstile_script_tag with turbo_reload: false" do
+      it "omits the Turbo attributes" do
+        expect(subject.cloudflare_turnstile_script_tag(turbo_reload: false)).to eq "<script src=\"https://challenges.cloudflare.com/turnstile/v0/api.js\" async=\"async\" defer=\"defer\"></script>"
+      end
+
+      it "combines with explicit rendering and html options" do
+        expect(subject.cloudflare_turnstile_script_tag(explicit: true, turbo_reload: false, nonce: "abc123")).to eq '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async="async" defer="defer" nonce="abc123"></script>'
+      end
+
+      it "keeps the Turbo attributes by default" do
+        expect(subject.cloudflare_turnstile_script_tag).to include('data-turbo-track="reload"', 'data-turbo-temporary="true"')
+      end
+    end
+
     describe "#cloudflare_turnstile" do
       it do
         expect(subject.cloudflare_turnstile(action: "an-action")).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"normal\" data-action=\"an-action\" data-theme=\"auto\"></div></div>"
@@ -123,6 +137,10 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
     end
 
     its(:cloudflare_turnstile_script_tag) { should eq "<script src=\"/mock/mock_cloudflare_turnstile_api.js\" async=\"async\" defer=\"defer\" data-turbo-track=\"reload\" data-turbo-temporary=\"true\"></script>" }
+
+    it "omits the Turbo attributes on the mock script with turbo_reload: false" do
+      expect(subject.cloudflare_turnstile_script_tag(turbo_reload: false)).to eq "<script src=\"/mock/mock_cloudflare_turnstile_api.js\" async=\"async\" defer=\"defer\"></script>"
+    end
 
     describe "#cloudflare_turnstile" do
       it do
