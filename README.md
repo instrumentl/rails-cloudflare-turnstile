@@ -68,5 +68,41 @@ end
 
 Per-instance values will override the global configuration. Both strings and symbols are accepted.
 
+## Explicit rendering
+
+By default the widget is rendered implicitly: `api.js` scans the document once,
+at script load, and renders every element carrying the `cf-turnstile` class.
+That is the right behaviour for a widget that is on screen when the page arrives.
+
+A widget that starts life hidden — inside a closed `<dialog>`, a collapsed
+accordion, a tab that has not been opened — needs explicit rendering instead.
+Implicit rendering into `display: none` is unreliable, and a Turnstile token is
+single-use and expires after 300 seconds, so a panel opened ten minutes after
+page load would submit a stale one.
+
+Pass `explicit: true` to leave the `cf-turnstile` class off a single widget, so
+the implicit scan skips it and you can render it yourself when it becomes
+visible:
+
+```erb
+<%= cloudflare_turnstile_script_tag(explicit: true) %>
+
+<%= cloudflare_turnstile(explicit: true, id: "dialog-widget") %>
+```
+
+```js
+// when the dialog opens
+turnstile.render("#dialog-widget")
+// and on every open after the first
+turnstile.reset("#dialog-widget")
+```
+
+Every other attribute is unchanged, so the sitekey, size, theme and action still
+come from your configuration rather than being hand-written at the call site.
+
+Note that `cloudflare_turnstile_script_tag(explicit: true)` is page-global: it
+switches off the implicit scan for the whole document, so every widget on that
+page must then be rendered explicitly.
+
 ## License
 The gem is available as open source under the terms of the [ISC License](LICENSE.txt).
