@@ -108,6 +108,28 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
         expect(subject.cloudflare_turnstile(action: "an-action", data: {size: :flexible})).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"flexible\" data-action=\"an-action\" data-theme=\"auto\"></div></div>"
       end
 
+      it "does not modify the caller's data hash" do
+        data = {size: "compact", theme: "dark", appearance: "interaction-only"}
+        subject.cloudflare_turnstile(action: "an-action", data: data)
+
+        expect(data).to eq(size: "compact", theme: "dark", appearance: "interaction-only")
+      end
+
+      it "keeps per-instance overrides when the same data hash renders twice" do
+        data = {size: "compact", theme: "dark"}
+        first = subject.cloudflare_turnstile(action: "an-action", data: data)
+        second = subject.cloudflare_turnstile(action: "an-action", data: data)
+
+        expect(second).to eq first
+        expect(second).to include('data-size="compact"', 'data-theme="dark"')
+      end
+
+      it "accepts a frozen data hash" do
+        data = {size: "compact", theme: "dark"}.freeze
+
+        expect(subject.cloudflare_turnstile(action: "an-action", data: data)).to include('data-size="compact"', 'data-theme="dark"')
+      end
+
       it "allows dynamic size and theme override together" do
         expect(subject.cloudflare_turnstile(action: "an-action", data: {size: "compact", theme: "dark"})).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"compact\" data-action=\"an-action\" data-theme=\"dark\"></div></div>"
       end
