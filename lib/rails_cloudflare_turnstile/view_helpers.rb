@@ -28,6 +28,9 @@ module RailsCloudflareTurnstile
 
     def turnstile_div(action, data_callback: nil, **html_options)
       config = RailsCloudflareTurnstile.configuration
+      # `data` is the caller's own hash. Take size and theme out of a copy, so
+      # a hash reused across renders keeps its overrides and a frozen one works.
+      html_options[:data] = html_options[:data].dup if html_options[:data]
       size = html_options[:data]&.delete(:size) || config.size
       theme = html_options[:data]&.delete(:theme) || config.theme
 
