@@ -29,6 +29,20 @@ jobs:
       - name: Run RSpec Tests
         timeout-minutes: 20
         run: bundle exec rspec -f doc
+  javascript:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+      - name: Test mock script
+        run: node --test spec/javascript/*.cjs
   lint:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
