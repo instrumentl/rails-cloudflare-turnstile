@@ -29,6 +29,22 @@ jobs:
       - name: Run RSpec Tests
         timeout-minutes: 20
         run: bundle exec rspec -f doc
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+      - name: Install Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
   lint:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
