@@ -2,16 +2,16 @@
 
 module RailsCloudflareTurnstile
   module ViewHelpers
-    def cloudflare_turnstile(action: "other", data_callback: nil, container_class: nil, **html_options)
+    def cloudflare_turnstile(action: "other", data_callback: nil, container_class: nil, explicit: false, **html_options)
       container_class = ["cloudflare-turnstile", container_class].compact.join(" ")
 
       if RailsCloudflareTurnstile.enabled?
         content_tag(:div, class: container_class) do
-          concat turnstile_div(action, data_callback: data_callback, **html_options)
+          concat turnstile_div(action, data_callback: data_callback, explicit: explicit, **html_options)
         end
       elsif RailsCloudflareTurnstile.mock_enabled?
         content_tag(:div, class: container_class) do
-          concat mock_turnstile_div(action, data_callback: data_callback, **html_options)
+          concat mock_turnstile_div(action, data_callback: data_callback, explicit: explicit, **html_options)
         end
       end
     end
@@ -26,18 +26,18 @@ module RailsCloudflareTurnstile
 
     private
 
-    def turnstile_div(action, data_callback: nil, **html_options)
+    def turnstile_div(action, data_callback: nil, explicit: false, **html_options)
       config = RailsCloudflareTurnstile.configuration
       size = html_options[:data]&.delete(:size) || config.size
       theme = html_options[:data]&.delete(:theme) || config.theme
 
-      content_tag(:div, :class => "cf-turnstile", "data-sitekey" => site_key, "data-size" => size, "data-action" => action, "data-callback" => data_callback, "data-theme" => theme, **html_options) do
+      content_tag(:div, :class => widget_class(explicit), "data-sitekey" => site_key, "data-size" => size, "data-action" => action, "data-callback" => data_callback, "data-theme" => theme, **html_options) do
         ""
       end
     end
 
-    def mock_turnstile_div(action, data_callback: nil, **html_options)
-      content_tag(:div, :class => "cf-turnstile", :style => "width: 300px; height: 65px; border: 1px solid gray; display: flex; flex-direction: row; justify-content: center; align-items: center; margin: 10px;", "data-callback" => data_callback, **html_options) do
+    def mock_turnstile_div(action, data_callback: nil, explicit: false, **html_options)
+      content_tag(:div, :class => widget_class(explicit), :style => "width: 300px; height: 65px; border: 1px solid gray; display: flex; flex-direction: row; justify-content: center; align-items: center; margin: 10px;", "data-callback" => data_callback, **html_options) do
         [
           tag.input(type: "hidden", name: "cf-turnstile-response", value: "mocked"),
           image_tag("turnstile-logo.svg"),
@@ -46,6 +46,13 @@ module RailsCloudflareTurnstile
           end
         ].reduce(:<<)
       end
+    end
+
+    # The implicit api.js scan renders every element carrying the `cf-turnstile`
+    # class exactly once, at script load. A widget that is rendered explicitly
+    # (turnstile.render) must NOT carry it, or the scan races the caller.
+    def widget_class(explicit)
+      "cf-turnstile" unless explicit
     end
 
     def site_key
