@@ -17,7 +17,7 @@ group :development, :test do
   gem "rspec", "~> 3.13"
   gem "rspec-its", "~> 2.0"
   gem "standard", "~> 1"
-  gem "pry", "~> 0.16.0"
+  gem "pry", "~> 0.16.1"
   gem "webmock", "~> 3.34"
   gem "bundler-audit", "~> 0.9.3"
 end
