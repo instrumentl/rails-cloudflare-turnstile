@@ -68,5 +68,20 @@ end
 
 Per-instance values will override the global configuration. Both strings and symbols are accepted.
 
+## Development
+
+Run the Ruby specs and style checks with:
+
+```bash
+bundle exec rspec
+bundle exec standardrb
+```
+
+The mock script tests use Node.js 22 or later and require no npm dependencies:
+
+```bash
+node --test spec/javascript/*.cjs
+```
+
 ## License
 The gem is available as open source under the terms of the [ISC License](LICENSE.txt).
