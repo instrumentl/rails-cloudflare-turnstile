@@ -111,6 +111,14 @@ RSpec.describe RailsCloudflareTurnstile::ViewHelpers do
       it "allows dynamic size and theme override together" do
         expect(subject.cloudflare_turnstile(action: "an-action", data: {size: "compact", theme: "dark"})).to eq "<div class=\"cloudflare-turnstile\"><div class=\"cf-turnstile\" data-sitekey=\"a_public_key\" data-size=\"compact\" data-action=\"an-action\" data-theme=\"dark\"></div></div>"
       end
+
+      it "omits the cf-turnstile class when rendered explicitly" do
+        expect(subject.cloudflare_turnstile(action: "an-action", explicit: true)).to eq "<div class=\"cloudflare-turnstile\"><div data-sitekey=\"a_public_key\" data-size=\"normal\" data-action=\"an-action\" data-theme=\"auto\"></div></div>"
+      end
+
+      it "still honours html and data options when rendered explicitly" do
+        expect(subject.cloudflare_turnstile(action: "an-action", explicit: true, id: "sheet-widget", data: {theme: "dark"})).to eq "<div class=\"cloudflare-turnstile\"><div data-sitekey=\"a_public_key\" data-size=\"normal\" data-action=\"an-action\" data-theme=\"dark\" id=\"sheet-widget\"></div></div>"
+      end
     end
   end
 
