@@ -24,7 +24,8 @@ Or install it yourself as:
 $ gem install rails_cloudflare_turnstile
 ```
 
-Next, configure it by creating a `config/initializers/cloudflare_turnstile.rb` with contents like the following:
+Next, configure it by running the install generator `rails g rails_cloudflare_turnstile:install` that will create `config/initializers/cloudflare_turnstile.rb`
+for you with contents like the following:
 
 ```ruby
 RailsCloudflareTurnstile.configure do |c|
